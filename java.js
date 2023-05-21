@@ -1,5 +1,10 @@
 // write a function with two parameters, computer selection and player selection
 //computer has to randomly choose between rock or paper or scissors
+function getComputerChoice() {
+    const arr = ["Rock", "Paper", "Scissors"]
+    const randomIndex = Math.floor(Math.random() * arr.length)
+    return randomItem = arr[randomIndex]
+}
 //player can choose between rock or paper or scissors
 //if rock and paper, paper wins
 //if rock and scissors, rock wins
