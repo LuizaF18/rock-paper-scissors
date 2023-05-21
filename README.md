@@ -1,1 +1,1 @@
-# rock-paper-scissors
+Code a "Rock, paper, scissors" game to play in the browser console, cementing the knowledge gained from the first few lessons in JavaScript from "Foundations" in the Odin Project.
