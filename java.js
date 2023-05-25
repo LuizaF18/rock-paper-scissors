@@ -1,52 +1,65 @@
-const choices = ["rock", "paper", "scissors"]
+const arr = ["rock", "paper", "scissors"]
 
-//computer has to randomly choose between rock or paper or scissors
 function getComputerChoice() {
-    const randomIndex = Math.floor(Math.random() * choices.length)
-    return randomItem = choices[randomIndex]
+    let random = [Math.floor(Math.random() * arr.length)]
+    return arr[random]
 }
 
-//player can choose between rock or paper or scissors
+function getPlayerChoice() {
+    let input = prompt("Rock, paper or scissors?");
+    input = input.toLowerCase()
+    while (input !== arr) {
+        return prompt("Rock, paper, or scissors.")
+    }
+    return input
+}
 
-// write a function with two parameters, computer selection and player selection
+function checkWinner(playerSelection, computerSelection) {
+    if (playerSelection == computerSelection) {
+        return "Tie"
+    } else if (playerSelection == "rock" && computerSelection == "scissors" || 
+    playerSelection == "paper" && computerSelection == "rock" ||
+    playerSelection == "scissors" && computerSelection == "paper") {
+        return "Player"
+    } else {
+        return "Computer"
+    }
+}
 
 function playRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice()
-    if (computerSelection == "rock" && playerSelection == "scissors") {
-       return "You lose! Rock beats scissors.";
-      } else if (computerSelection == "rock" && playerSelection == "paper") {
-       return "You win! Paper beats rock.";
-      } else if (computerSelection == playerSelection) {
-       return "It's a tie!";
-     } else if (computerSelection == "paper" && playerSelection == "scissors") {
-       return "You win! Scissors beats paper.";
-        } else if (computerSelection == "paper" && playerSelection == "rock") {
-       return "You lose! Paper beats rock.";
-       } else if (computerSelection == "scissors" && playerSelection == "paper") {
-       return "You lose! Scissors beats paper.";
-      } else if (computerSelection == "scissors" && playerSelection == "rock") {
-       return "You win! Rock beats scissors.";
-      }
+    playerSelection = "rock"
+    if (checkWinner(playerSelection, computerSelection) == "Tie") {
+        return "It's a tie!"
+    } else if (checkWinner(playerSelection, computerSelection) == "Player") {
+        return `You win! ${playerSelection} beats ${computerSelection}.`
+    } else if (checkWinner(playerSelection, computerSelection) == "Computer") {
+        return `You lose! ${computerSelection} beats ${playerSelection}.`
+    }
 }
 
-
-
-
-
-
-
-
-
-//if rock and paper, paper wins
-//if rock and scissors, rock wins
-//if paper and scissors, scissors win
-//at the end of choice, return a string that declares the winner of the round
-//player inputs string, make string case insensitive
-//use prompt to get input from user
-
-//write a game function
-//it has to loop for 5 times and keep score of the wins
-//use console log to display the results at the end of each round
-//if computer gets to 5, computer wins
-//if player gets to 5, player wins
-//use console log to declare the winner
+function game() {
+    let playerScore = 0
+    let computerScore = 0
+    for (i = 0; i < 5; i++) {
+        computerSelection = getComputerChoice()
+        playerSelection = "rock"
+        playRound(playerSelection, computerSelection)
+        console.log(playRound(playerSelection, computerSelection))
+        if (checkWinner(playerSelection, computerSelection) == "Player") {
+            playerScore++
+        } else if (checkWinner(playerSelection, computerSelection) == "Computer") {
+            computerScore++
+        } else if (checkWinner(playerSelection, computerSelection) == "Tie") {
+            playerScore++ && computerScore++
+        }
+    }
+    console.log("Game Over!")
+    if (playerScore > computerScore) {
+        return "You won."
+    } else if (playerScore < computerScore) {
+        return "You lost."
+    } else if (playerScore == computerScore) {
+        return "It's a tie..."
+    }
+}
